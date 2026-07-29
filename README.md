@@ -21,7 +21,7 @@ Follow these step-by-step instructions to deploy the streaming service via SSH.
 
 ### Step 2: Download and Execute the Script
 
-**C2CamInstall.sh***
+**[C2CamInstall.sh](https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/refs/heads/main/C2CamInstall.sh)**
 
 Step 3: Configure your Web Interface (Fluidd / Mainsail)
 
@@ -58,6 +58,6 @@ If you ever wish to remove the modifications, C2Cam guarantees a 100% clean roll
 
 ### Download and Execute the Script
 
-**C2CamUninstall.sh**
+**[C2CamUninstall.sh](https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/refs/heads/main/C2CamUninstall.sh)**
 
 Your operating system is now completely untainted and pristine.
