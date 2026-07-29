@@ -6,7 +6,11 @@ Unlike heavy transcoding setups that push the printer's CPU to its limits and ca
 
 I used this Low Budget Cam-borad for my DIY Projekt: [Innomaker 1080p](https://www.amazon.com/s?k=innomaker+1080p&crid=11FNIO0SOXRHY&sprefix=%2Caps%2C174&ref=nb_sb_ss_recent_1_0_recent)
 
----
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/main/assets/Snap.jpg" alt="Snap" width="500">
+</p>
+
 
 ## 🚀 Installation & Deployment Guide
 
