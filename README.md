@@ -8,6 +8,8 @@ Unlike heavy transcoding setups that push the printer's CPU to its limits and ca
 
 ## 🚀 Installation & Deployment Guide
 
+!!! Please Note: you absolutely need root rights on your printer and, if necessary, the camera fix from DnG https://github.com/DnG-Crafts/K2-Camera !!!
+
 Follow these step-by-step instructions to deploy the streaming service via SSH.
 
 ### Step 1: Connect to your Printer via PuTTY
