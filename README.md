@@ -73,3 +73,7 @@ If you ever wish to remove the modifications, C2Cam guarantees a 100% clean roll
 and run it via PuttY with [Enter].
 
 Your operating system is now completely untainted and pristine.
+
+
+> **Disclaimer / Use at your own risk**
+> This project is provided "as is" without warranty of any kind. You are using this software and hardware modifications entirely at your own risk. The author takes no responsibility for any potential damages, data loss, or bricked devices.
