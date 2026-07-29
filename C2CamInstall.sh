@@ -16,6 +16,12 @@ if [ -f /root/go2rtc ]; then
     echo "[Backup] Existing go2rtc binary backed up."
 fi
 
+# Backup rcS to ensure we can restore it during uninstallation
+if [ -f /etc/init.d/rcS ]; then
+    cp /etc/init.d/rcS /root/c2cam_backup/rcS.bak
+    echo "[Backup] Existing rcS startup file backed up."
+fi
+
 echo "=== C2CAM: STEP 2 - ROBUST DOWNLOAD VIA PYTHON BYPASS ==="
 echo "Retrieving 32-bit ARMv7 go2rtc binary from GitHub..."
 
@@ -90,8 +96,15 @@ exit 0
 CGF
 
 chmod +x /etc/init.d/S99c2cam
+
+echo "=== C2CAM: STEP 5 - ENFORCING SYSTEM PERSISTENCE ==="
+if ! grep -q "/etc/init.d/S99c2cam start" /etc/init.d/rcS; then
+    echo "/etc/init.d/S99c2cam start &" >> /etc/init.d/rcS
+    echo "Autostart registered in rcS successfully."
+fi
+
 echo "Launching C2Cam immediately..."
-/root/go2rtc -config /root/go2rtc.yaml >/dev/null 2>&1 &
+/etc/init.d/S99c2cam start
 
 echo "=== C2CAM: INSTALLATION COMPLETE ==="
 echo "Stream is now active on port 8081!"
