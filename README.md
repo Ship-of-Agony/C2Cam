@@ -48,9 +48,9 @@ Bash
 /etc/init.d/S99c2cam restart
 # Available options: start | stop | restart
 
-/etc/init.d/S99c2cam start
-/etc/init.d/S99c2cam stop
-/etc/init.d/S99c2cam restart
+  * /etc/init.d/S99c2cam start
+  * /etc/init.d/S99c2cam stop
+  * /etc/init.d/S99c2cam restart
 
 ❌ **Uninstallation**
 
