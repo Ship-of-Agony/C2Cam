@@ -1,4 +1,4 @@
-# C2Cam (Creality 2 Cam)
+# C2Cam C(reality) 2 Cam
 
 A stable, ultra-low-overhead 1080p USB camera streaming solution designed specifically for the **Creality K2 Series** (Allwinner T113-i, 32-bit ARM). 
 
