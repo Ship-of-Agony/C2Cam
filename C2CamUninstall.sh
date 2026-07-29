@@ -7,9 +7,9 @@ echo "Stopping active stream services..."
 killall go2rtc 2>/dev/null
 killall ffmpeg 2>/dev/null
 
-echo "Removing C2Cam autostart entry from rcS..."
-if [ -f /etc/init.d/rcS ]; then
-    sed -i '\#/etc/init.d/S99c2cam start#d' /etc/init.d/rcS
+echo "Removing C2Cam autostart entry from rc.local..."
+if [ -f /etc/rc.local ]; then
+    sed -i '\#/etc/init.d/S99c2cam start#d' /etc/rc.local
 fi
 
 echo "Removing C2Cam binaries and configurations..."
@@ -19,32 +19,17 @@ echo "Removing C2Cam binaries and configurations..."
 
 echo "Checking for system backups..."
 if [ -d /root/c2cam_backup ]; then
-    if [ -f /root/c2cam_backup/go2rtc.yaml.bak ]; then
-        mv /root/c2cam_backup/go2rtc.yaml.bak /root/go2rtc.yaml
-        echo "[Restore] Original go2rtc.yaml restored."
-    fi
-    if [ -f /root/c2cam_backup/S99c2cam.bak ]; then
-        mv /root/c2cam_backup/S99c2cam.bak /etc/init.d/S99c2cam
-        chmod +x /etc/init.d/S99c2cam
-        echo "[Restore] Original S99c2cam init script restored."
-    fi
-    if [ -f /root/c2cam_backup/go2rtc.bin.bak ]; then
-        mv /root/c2cam_backup/go2rtc.bin.bak /root/go2rtc
-        chmod +x /root/go2rtc
-        echo "[Restore] Original go2rtc binary restored."
-    fi
-    if [ -f /root/c2cam_backup/rcS.bak ]; then
-        mv /root/c2cam_backup/rcS.bak /etc/init.d/rcS
-        echo "[Restore] Original rcS startup file restored."
-    fi
+    [ -f /root/c2cam_backup/go2rtc.yaml.bak ] && mv /root/c2cam_backup/go2rtc.yaml.bak /root/go2rtc.yaml
+    [ -f /root/c2cam_backup/S99c2cam.bak ] && mv /root/c2cam_backup/S99c2cam.bak /etc/init.d/S99c2cam && chmod +x /etc/init.d/S99c2cam
+    [ -f /root/c2cam_backup/go2rtc.bin.bak ] && mv /root/c2cam_backup/go2rtc.bin.bak /root/go2rtc && chmod +x /root/go2rtc
+    [ -f /root/c2cam_backup/rc.local.bak ] && mv /root/c2cam_backup/rc.local.bak /etc/rc.local
     rm -rf /root/c2cam_backup
-    echo "Backup directory cleaned up."
+    echo "System backups successfully restored."
 else
-    echo "No backups found. System cleaned to pristine state."
+    echo "No backups found. Clean rollback completed."
 fi
 
 echo "=== C2CAM: UNINSTALLATION COMPLETE ==="
-echo "The system has been completely restored."
 EOF
 
 chmod +x /root/C2CamUninstall.sh
