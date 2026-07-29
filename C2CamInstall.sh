@@ -15,11 +15,9 @@ if [ -f /root/go2rtc ]; then
     cp /root/go2rtc /root/c2cam_backup/go2rtc.bin.bak
     echo "[Backup] Existing go2rtc binary backed up."
 fi
-
-# Backup rcS to ensure we can restore it during uninstallation
-if [ -f /etc/init.d/rcS ]; then
-    cp /etc/init.d/rcS /root/c2cam_backup/rcS.bak
-    echo "[Backup] Existing rcS startup file backed up."
+if [ -f /etc/rc.local ]; then
+    cp /etc/rc.local /root/c2cam_backup/rc.local.bak
+    echo "[Backup] Existing rc.local backed up."
 fi
 
 echo "=== C2CAM: STEP 2 - ROBUST DOWNLOAD VIA PYTHON BYPASS ==="
@@ -97,10 +95,18 @@ CGF
 
 chmod +x /etc/init.d/S99c2cam
 
-echo "=== C2CAM: STEP 5 - ENFORCING SYSTEM PERSISTENCE ==="
-if ! grep -q "/etc/init.d/S99c2cam start" /etc/init.d/rcS; then
-    echo "/etc/init.d/S99c2cam start &" >> /etc/init.d/rcS
-    echo "Autostart registered in rcS successfully."
+echo "=== C2CAM: STEP 5 - ENFORCING OPENWRT SYSTEM PERSISTENCE ==="
+# Sauberes Einfügen in die /etc/rc.local VOR dem "exit 0" von OpenWrt
+if [ -f /etc/rc.local ]; then
+    if ! grep -q "/etc/init.d/S99c2cam start" /etc/etc/rc.local 2>/dev/null; then
+        sed -i '/exit 0/i \/etc/init.d/S99c2cam start &' /etc/rc.local
+        echo "Autostart erfolgreich in OpenWrt rc.local registriert."
+    fi
+else
+    # Falls keine rc.local existiert, erstellen wir eine funktionierende
+    echo -e "#!/bin/sh\n/etc/init.d/S99c2cam start &\nexit 0" > /etc/rc.local
+    chmod +x /etc/rc.local
+    echo "rc.local neu erstellt und registriert."
 fi
 
 echo "Launching C2Cam immediately..."
@@ -108,7 +114,6 @@ echo "Launching C2Cam immediately..."
 
 echo "=== C2CAM: INSTALLATION COMPLETE ==="
 echo "Stream is now active on port 8081!"
-echo "Fluidd / MainSail Stream URL: http://[YOUR_PRINTER_IP]:8081/stream.html?src=c2cam"
 EOF
 
 chmod +x /root/C2CamInstall.sh
