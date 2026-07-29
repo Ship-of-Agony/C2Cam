@@ -1,8 +1,8 @@
-#!/sh
+cat << 'EOF' > /root/C2CamInstall.sh
+#!/bin/sh
 echo "=== C2CAM: STEP 1 - AUTOMATIC SYSTEM BACKUP ==="
 mkdir -p /root/c2cam_backup
 
-# Backup existing configuration if present to guarantee clean uninstallation later
 if [ -f /root/go2rtc.yaml ]; then
     cp /root/go2rtc.yaml /root/c2cam_backup/go2rtc.yaml.bak
     echo "[Backup] Existing go2rtc.yaml backed up."
@@ -19,7 +19,6 @@ fi
 echo "=== C2CAM: STEP 2 - ROBUST DOWNLOAD VIA PYTHON BYPASS ==="
 echo "Retrieving 32-bit ARMv7 go2rtc binary from GitHub..."
 
-# Utilizing the proven secure-context bypass via Python to eliminate wget/SSL issues
 python -c '
 import urllib2
 url = "https://github.com/AlexxIT/go2rtc/releases/latest/download/go2rtc_linux_arm"
@@ -40,24 +39,21 @@ with open("/root/go2rtc", "wb") as f:
 chmod +x /root/go2rtc
 
 echo "=== C2CAM: STEP 3 - CONFIGURING ZERO-OVERHEAD STREAM COPY ==="
-# Hardcoding -c:v copy to bypass CPU transcoding and ensure hardware stability
-cat << 'EOF' > /root/go2rtc.yaml
+cat << 'CGF' > /root/go2rtc.yaml
 streams:
   c2cam: exec:ffmpeg -loglevel quiet -f v4l2 -input_format mjpeg -video_size 1920x1080 -i /dev/video2 -c:v copy -f mpjpeg -
 
 api:
   listen: ":8081"
-EOF
+CGF
 
 echo "=== C2CAM: STEP 4 - CREATING SMART BOOT ROUTINE ==="
-cat << 'EOF' > /etc/init.d/S99c2cam
+cat << 'CGF' > /etc/init.d/S99c2cam
 #!/bin/sh
 
 case "$1" in
   start)
     echo "Starting C2Cam Service..."
-    
-    # Intelligent wait loop: checks for hardware availability dynamically (Max 45s)
     TIMEOUT=45
     COUNTER=0
     echo "Checking for USB camera hardware readiness..."
@@ -91,14 +87,16 @@ case "$1" in
     ;;
 esac
 exit 0
-EOF
+CGF
 
 chmod +x /etc/init.d/S99c2cam
-
-# Launch service immediately bypassing boot delay for instant deployment confirmation
 echo "Launching C2Cam immediately..."
 /root/go2rtc -config /root/go2rtc.yaml >/dev/null 2>&1 &
 
 echo "=== C2CAM: INSTALLATION COMPLETE ==="
 echo "Stream is now active on port 8081!"
 echo "Fluidd / MainSail Stream URL: http://[YOUR_PRINTER_IP]:8081/stream.html?src=c2cam"
+EOF
+
+chmod +x /root/C2CamInstall.sh
+/root/C2CamInstall.sh
