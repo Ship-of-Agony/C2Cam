@@ -27,16 +27,16 @@ Step 3: Configure your Web Interface (Fluidd / Mainsail)
 
 The stream activates immediately on port 8081 upon successful installation. To mount it into your dashboard:
 
-    Navigate to Settings -> Cameras inside Fluidd or Mainsail.
+Navigate to Settings -> Cameras inside Fluidd or Mainsail.
 
-    Click Add Camera and choose MPEG-Stream (or WebRTC/MJPEG).
+Click Add Camera and choose MPEG-Stream (or WebRTC/MJPEG).
 
-    Set the stream URL to the following path (replace [YOUR_PRINTER_IP] with your printer's real IP address):
-    Plaintext
+Set the stream URL to the following path (replace [YOUR_PRINTER_IP] with your printer's real IP address):
 
-    http://[YOUR_PRINTER_IP]:8081/stream.html?src=c2cam
 
-🛠️ Management & Service Persistence
+http://[YOUR_PRINTER_IP]:8081/stream.html?src=c2cam
+
+🛠️ **Management & Service Persistence**
 
 Persistence is configured out-of-the-box via a dedicated system service script (/etc/init.d/S99c2cam).
 
@@ -47,6 +47,10 @@ Bash
 
 /etc/init.d/S99c2cam restart
 # Available options: start | stop | restart
+
+   /etc/init.d/S99c2cam start
+   /etc/init.d/S99c2cam stop
+   /etc/init.d/S99c2cam restart
 
 ❌ **Uninstallation**
 
