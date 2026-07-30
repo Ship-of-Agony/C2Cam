@@ -11,6 +11,14 @@ I used this Low Budget Cam-borad for my DIY Projekt: [Innomaker 1080p](https://w
   <img src="https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/main/assets/Snap.jpg" alt="Snap" width="500">
 </p>
 
+⚠️ **Current Status: Experimental Beta & Proof of Concept**
+
+Please keep in mind that C2Cam is currently in an early beta stage and meant as a proof of concept. It is not yet designed for production environments and definitely needs further optimization.
+
+**Important Usage Note:**
+
+The data load over the communication board can sometimes be higher than expected, which might cause Moonraker to crash in worst-case scenarios. I strongly recommend starting with the [C2CamInstaller15FPS.sh](https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/refs/heads/main/C2CamInstall15FPS.sh) script first to avoid overloading the system. 
+
 
 ## 🚀 Installation & Deployment Guide
 
