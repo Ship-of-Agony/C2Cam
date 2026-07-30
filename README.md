@@ -69,8 +69,12 @@ If you ever wish to remove the modifications, C2Cam guarantees a 100% clean roll
 
 ### Copy the Script
 
-**[C2CamUninstall.sh](https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/refs/heads/main/C2CamUninstall.sh)**
-and run it via PuttY with [Enter].
+*   **[C2CamUninstall.sh](https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/refs/heads/main/C2CamUninstall.sh)**
+   and run it via PuttY with [Enter].
+
+Optional Delet your Backups
+   * **[C2CamDeleteBackup.sh](https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/refs/heads/main/C2CamDeleteBackup.sh)**
+     and run it via PuttY with [Enter].
 
 Your operating system is now completely untainted and pristine.
 
