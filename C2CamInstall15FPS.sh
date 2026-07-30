@@ -42,10 +42,10 @@ with open("/root/go2rtc", "wb") as f:
 
 chmod +x /root/go2rtc
 
-echo "=== C2CAM: STEP 3 - CONFIGURING ZERO-OVERHEAD STREAM COPY (15 FPS) ==="
+echo "=== C2CAM: STEP 3 - CONFIGURING SOFTWARE 15 FPS DROP (ZERO-CPU COPY) ==="
 cat << 'CGF' > /root/go2rtc.yaml
 streams:
-  c2cam: exec:ffmpeg -loglevel quiet -f v4l2 -input_format mjpeg -video_size 1920x1080 -fps 15 -i /dev/video2 -c:v copy -f mpjpeg -
+  c2cam: exec:ffmpeg -loglevel quiet -f v4l2 -input_format mjpeg -video_size 1920x1080 -i /dev/video2 -r 15 -c:v copy -f mpjpeg -
 
 api:
   listen: ":8081"
@@ -111,7 +111,7 @@ echo "Launching C2Cam immediately..."
 /etc/init.d/S99c2cam start
 
 echo "=== C2CAM: INSTALLATION COMPLETE ==="
-echo "Stream is now active on port 8081 at 15 FPS!"
+echo "Stream is now active on port 8081 (Throttled to 15 FPS)!"
 EOF
 
 chmod +x /root/C2CamInstall.sh
