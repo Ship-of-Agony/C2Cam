@@ -96,17 +96,15 @@ CGF
 chmod +x /etc/init.d/S99c2cam
 
 echo "=== C2CAM: STEP 5 - ENFORCING OPENWRT SYSTEM PERSISTENCE ==="
-# Sauberes Einfügen in die /etc/rc.local VOR dem "exit 0" von OpenWrt
 if [ -f /etc/rc.local ]; then
-    if ! grep -q "/etc/init.d/S99c2cam start" /etc/etc/rc.local 2>/dev/null; then
+    if ! grep -q "/etc/init.d/S99c2cam start" /etc/rc.local 2>/dev/null; then
         sed -i '/exit 0/i \/etc/init.d/S99c2cam start &' /etc/rc.local
-        echo "Autostart erfolgreich in OpenWrt rc.local registriert."
+        echo "Autostart successfully registered in rc.local."
     fi
 else
-    # Falls keine rc.local existiert, erstellen wir eine funktionierende
     echo -e "#!/bin/sh\n/etc/init.d/S99c2cam start &\nexit 0" > /etc/rc.local
     chmod +x /etc/rc.local
-    echo "rc.local neu erstellt und registriert."
+    echo "rc.local did not exist, cleanly created new file."
 fi
 
 echo "Launching C2Cam immediately..."
