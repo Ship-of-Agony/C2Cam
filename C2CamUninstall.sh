@@ -11,7 +11,6 @@ fi
 
 echo "=== C2CAM UNINSTALLER: STEP 2 - REMOVING AUTOSTART ENTRY ==="
 if [ -f /etc/rc.local ]; then
-    # Removes only the specific line added by the installation script
     sed -i '\#/etc/init.d/S99c2cam start &#d' /etc/rc.local
     echo "Removed autostart entry from /etc/rc.local."
 fi
@@ -23,12 +22,14 @@ rm -f /root/go2rtc.yaml
 echo "Deleted binary, configuration, and init script files."
 
 echo "=== C2CAM UNINSTALLER: STEP 4 - REMOVING CONTROLLING SCRIPTS ==="
-# Self-destruct helper (removes the install script)
 rm -f /root/C2CamInstall.sh
 echo "Removed installer script."
+
+rm -f "$0"
 
 echo "=== C2CAM: UNINSTALLATION COMPLETE ==="
 echo "Note: Your backups are still safely stored in /root/c2cam_backup/"
 EOF
 
 chmod +x /root/C2CamUninstall.sh
+/root/C2CamUninstall.sh
