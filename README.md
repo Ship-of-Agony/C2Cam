@@ -51,8 +51,8 @@ Click Add Camera and choose HTTP-Site.
 
 Set the stream URL to the following path (replace [YOUR_PRINTER_IP] with your printer's real IP address):
 
-  * http://[YOUR_PRINTER_IP]:8081/stream.html?src=c2cam = Stream
-  * http://[YOUR_PRINTER_IP]:8081/api/frame.jpeg?src=c2cam = Snapshot
+  * http://[YOUR_PRINTER_IP]:8081/stream.html?src=c2cam (< -- = Stream)
+  * http://[YOUR_PRINTER_IP]:8081/api/frame.jpeg?src=c2cam (<-- = Snapshot)
 
 🛠️ **Management & Service Persistence**
 
