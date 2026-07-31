@@ -17,7 +17,7 @@ Please keep in mind that C2Cam is currently in an early beta stage and meant as 
 
 **Important Usage Note:**
 
-The data load over the communication board can sometimes be higher than expected, which might cause Moonraker to crash in worst-case scenarios. I strongly recommend starting with the [C2CamInstaller15FPS.sh](https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/refs/heads/main/C2CamInstall15FPS.sh) script first to avoid overloading the system. 
+The data load over the communication board can sometimes be higher than expected, which might cause Moonraker to crash in worst-case scenarios. I strongly recommend starting with the [C2CamInstaller720p15FPS.sh](https://raw.githubusercontent.com/Ship-of-Agony/C2Cam/refs/heads/main/C2CamInstall720p15FPS.sh) script first to avoid overloading the system. 
 
 
 ## 🚀 Installation & Deployment Guide
