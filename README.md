@@ -1,6 +1,6 @@
 # C2Cam C(reality) 2 Cam
 
-A stable, ultra-low-overhead 1080p USB camera streaming solution designed specifically for the **Creality K2 Series** (Allwinner T113-i, 32-bit ARM). 
+A ultra-low-overhead 720p, 720p-15 FPS & 1080p USB camera streaming solution designed specifically for the **Creality K2 Series** (Allwinner T113-i, 32-bit ARM). 
 
 Unlike heavy transcoding setups that push the printer's CPU to its limits and cause thermal throttling, **C2Cam** utilizes raw stream copying (`-c:v copy`). This drops the CPU transcoding load to 0%, ensuring thermal stability and minimal latency. Additionally, it implements a robust Python-native download bypass to overcome broken SSL/`wget` certificates on Creality OS, alongside an intelligent, dynamic boot loop that waits for your camera hardware (`/dev/video2`) to initialize safely.
 
